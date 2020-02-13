@@ -27,9 +27,8 @@ public class BirdRender : MonoBehaviour
 
         if (transform.position.y > 10 ||
             transform.position.y < -10 ||
-            transform.position.x > 14 ||
             transform.position.x < -15 ||
-            _timeSittingAround > 3)
+            _timeSittingAround > 3.5)
         {
             string currentSceneName = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene(currentSceneName);
