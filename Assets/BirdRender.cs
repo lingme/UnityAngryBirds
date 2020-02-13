@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BirdRender : MonoBehaviour
 {
@@ -9,6 +8,15 @@ public class BirdRender : MonoBehaviour
     private void Awake()
     {
         _initialPosition = transform.position;
+    }
+
+    private void Update()
+    {
+        if (transform.position.y > 10)
+        {
+            string currentSceneName = SceneManager.GetActiveScene().name;
+            SceneManager.LoadScene(currentSceneName);
+        }
     }
 
     private void OnMouseDown()
@@ -21,7 +29,8 @@ public class BirdRender : MonoBehaviour
         GetComponent<SpriteRenderer>().color = Color.white;
 
         Vector2 directionToInitialPosition = _initialPosition - transform.position;
-        GetComponent<Rigidbody2D>().AddForce(directionToInitialPosition);
+        GetComponent<Rigidbody2D>().AddForce(directionToInitialPosition * 600);
+        GetComponent<Rigidbody2D>().gravityScale = 1;
     }
 
     private void OnMouseDrag()
